@@ -1,0 +1,26 @@
+name: Daily Auto Commit
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day (adjust timing if needed)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger whenever you want to test it
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Log File
+        run: |
+          echo "Automated commit on $(date -u)" >> streak.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add streak.txt
+          git commit -m "chore: daily streak update [skip ci]" || exit 0
+          git push
