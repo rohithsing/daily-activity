@@ -15,7 +15,7 @@ jobs:
 
       - name: Random Commits or Skip Day
         run: |
-          git config --local user.email "rohitsigh767194@gmail.com"
+          git config --local user.email "153902469+rohithsing@users.noreply.github.com"
           git config --local user.name "rohithsing"
 
           # 20% chance to skip today completely (1 in 5 chance)
